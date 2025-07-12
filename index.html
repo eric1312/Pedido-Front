@@ -7,13 +7,18 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body class="container py-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="mb-0">Gestión de Pedidos</h1>
-        <button type="button" class="btn btn-outline-primary position-relative" id="carritoHeaderBtn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+    <div class="header-pedidos d-flex justify-content-between align-items-center mb-4 p-4 rounded shadow-lg" style="background: linear-gradient(90deg, #0d6efd 60%, #6ea8fe 100%); box-shadow: 0 4px 16px #0d6efd33;">
+        <div class="d-flex align-items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-box-seam header-icon" viewBox="0 0 16 16">
+                <path d="M8.186.113a1 1 0 0 0-.372 0l-6 1.5A1 1 0 0 0 1 2.5v11a1 1 0 0 0 .684.948l6 2a1 1 0 0 0 .632 0l6-2A1 1 0 0 0 15 13.5v-11a1 1 0 0 0-.814-.987l-6-1.5zm-.372 1.027a.5.5 0 0 1 .372 0l6 1.5a.5.5 0 0 1 .372.487v.638l-6.5-1.625-6.5 1.625V2.5a.5.5 0 0 1 .372-.487l6-1.5zM2 3.383l6 1.5v9.734l-6-2V3.383zm7 11.117V4.883l6-1.5v9.734l-6 2z"/>
+            </svg>
+            <h1 class="mb-0 fw-bold" style="letter-spacing:1px; text-shadow: 1px 1px 4px #0002;">Gestión de Pedidos</h1>
+        </div>
+        <button type="button" class="btn btn-outline-light position-relative" id="carritoHeaderBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                 <path d="M0 1.5A.5.5 0 0 1 .5 1h1a.5.5 0 0 1 .485.379L2.89 5H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 14H4a.5.5 0 0 1-.491-.408L1.01 2H.5a.5.5 0 0 1-.5-.5zm3.14 4l1.25 6.5h7.22l1.25-6.5H3.14zM5.5 16a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm7 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
             </svg>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="carritoCount" style="font-size:0.8em;display:none;">0</span>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="carritoCount" style="font-size:0.9em;display:none;">0</span>
         </button>
     </div>
     <form id="pedidoForm" class="mb-4">
@@ -66,4 +71,4 @@
     </table>
     <script src="main.js"></script>
 </body>
-</html> 
+</html>

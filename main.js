@@ -7,6 +7,26 @@ document.getElementById("cancelarBtn").addEventListener("click", limpiarFormular
 // --- Carrito de pedidos ---
 let carrito = [];
 
+// Botón de carrito en el header
+const carritoHeaderBtn = document.getElementById("carritoHeaderBtn");
+const carritoSection = document.getElementById("carritoSection");
+let carritoVisible = false;
+carritoHeaderBtn.addEventListener("click", () => {
+    carritoVisible = !carritoVisible;
+    carritoSection.style.display = carritoVisible && carrito.length > 0 ? "block" : "none";
+});
+
+// Contador de carrito en el header
+const carritoCount = document.getElementById("carritoCount");
+function actualizarCarritoCount() {
+    if (carrito.length > 0) {
+        carritoCount.textContent = carrito.length;
+        carritoCount.style.display = "inline-block";
+    } else {
+        carritoCount.style.display = "none";
+    }
+}
+
 // Botón para agregar al carrito
 const agregarCarritoBtn = document.getElementById("agregarCarritoBtn");
 agregarCarritoBtn.addEventListener("click", agregarAlCarrito);
@@ -21,6 +41,7 @@ function agregarAlCarrito() {
     }
     carrito.push({ cliente, descripcion, total });
     mostrarCarrito();
+    actualizarCarritoCount();
     limpiarFormulario();
 }
 
@@ -29,9 +50,13 @@ function mostrarCarrito() {
     const tbody = document.getElementById("carritoTable");
     if (carrito.length === 0) {
         section.style.display = "none";
+        carritoVisible = false;
+        actualizarCarritoCount();
         return;
     }
-    section.style.display = "block";
+    if (carritoVisible) {
+        section.style.display = "block";
+    }
     tbody.innerHTML = "";
     carrito.forEach((pedido, idx) => {
         tbody.innerHTML += `
@@ -43,11 +68,17 @@ function mostrarCarrito() {
             </tr>
         `;
     });
+    actualizarCarritoCount();
 }
 
 window.eliminarDelCarrito = function(idx) {
     carrito.splice(idx, 1);
     mostrarCarrito();
+    actualizarCarritoCount();
+    if (carrito.length === 0) {
+        carritoSection.style.display = "none";
+        carritoVisible = false;
+    }
 };
 
 // Botón para enviar todos los pedidos del carrito

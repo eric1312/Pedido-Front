@@ -11,7 +11,7 @@ Este proyecto es una aplicación web simple para la gestión de pedidos, desarro
 
 ## Estructura del proyecto
 
-```
+```**
 ├── index.html        # Interfaz principal de la aplicación
 ├── main.js           # Lógica de la aplicación (JS)
 ├── styles.css        # Estilos personalizados
@@ -51,4 +51,4 @@ La aplicación espera que el backend exponga los siguientes endpoints:
 
 ---
 
-¡Contribuciones y sugerencias son bienvenidas! 
+<!-- ¡Contribuciones y sugerencias son bienvenidas! -->

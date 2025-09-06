@@ -7,6 +7,7 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body class="container py-4">
+    <!--Header con ícono y botón de carrito-->
     <div class="header-pedidos d-flex justify-content-between align-items-center mb-4 p-4 rounded shadow-lg" style="background: linear-gradient(90deg, #0d6efd 60%, #6ea8fe 100%); box-shadow: 0 4px 16px #0d6efd33;">
         <div class="d-flex align-items-center gap-3">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-box-seam header-icon" viewBox="0 0 16 16">
@@ -14,6 +15,7 @@
             </svg>
             <h1 class="mb-0 fw-bold" style="letter-spacing:1px; text-shadow: 1px 1px 4px #0002;">Gestión de Pedidos</h1>
         </div>
+        <!-- Botón de carrito con contador -->
         <button type="button" class="btn btn-outline-light position-relative" id="carritoHeaderBtn">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                 <path d="M0 1.5A.5.5 0 0 1 .5 1h1a.5.5 0 0 1 .485.379L2.89 5H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 14H4a.5.5 0 0 1-.491-.408L1.01 2H.5a.5.5 0 0 1-.5-.5zm3.14 4l1.25 6.5h7.22l1.25-6.5H3.14zM5.5 16a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm7 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
@@ -21,54 +23,56 @@
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="carritoCount" style="font-size:0.9em;display:none;">0</span>
         </button>
     </div>
+    <!--Formulario para agregar/editar pedidos-->
     <form id="pedidoForm" class="mb-4">
+        <!--Campo oculto para almacenar el ID del pedido al editar-->
         <input type="hidden" id="pedidoId">
-        <div class="mb-3">
-            <label for="cliente" class="form-label">Cliente</label>
-            <input type="text" id="cliente" class="form-control" required>
+        <div class="mb-3"> <!-- Campo para el nombre del cliente --> 
+            <label for="cliente" class="form-label">Cliente</label> <!-- Etiqueta para el campo de cliente -->
+            <input type="text" id="cliente" class="form-control" required> <!-- Campo de entrada para el nombre del cliente -->
         </div>
-        <div class="mb-3">
-            <label for="descripcion" class="form-label">Descripción</label>
-            <input type="text" id="descripcion" class="form-control" required>
+        <div class="mb-3"> <!-- Campo para la descripción del pedido -->
+            <label for="descripcion" class="form-label">Descripción</label> <!-- Etiqueta para el campo de descripción -->
+            <input type="text" id="descripcion" class="form-control" required>  <!-- Campo de entrada para la descripción del pedido -->
         </div>
-        <div class="mb-3">
-            <label for="total" class="form-label">Total</label>
-            <input type="number" id="total" class="form-control" required step="0.01">
+        <div class="mb-3">  <!-- Campo para el total del pedido -->
+            <label for="total" class="form-label">Total</label> <!-- Etiqueta para el campo de total -->
+            <input type="number" id="total" class="form-control" required step="0.01">  <!-- Campo de entrada para el total del pedido -->
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-        <button type="button" class="btn btn-secondary" id="cancelarBtn" style="display:none;">Cancelar</button>
-        <button type="button" class="btn btn-success" id="agregarCarritoBtn">Agregar al carrito</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>  <!-- Botón para guardar el pedido -->
+        <button type="button" class="btn btn-secondary" id="cancelarBtn" style="display:none;">Cancelar</button>    <!-- Botón para cancelar la edición -->
+        <button type="button" class="btn btn-success" id="agregarCarritoBtn">Agregar al carrito</button>    <!-- Botón para agregar el pedido al carrito -->
     </form>
-    <div class="card mt-4" id="carritoSection" style="display:none;">
-        <div class="card-header">Carrito de Pedidos</div>
-        <div class="card-body p-0">
-            <table class="table mb-0">
+    <div class="card mt-4" id="carritoSection" style="display:none;">   <!-- Sección del carrito de pedidos, inicialmente oculta -->
+        <div class="card-header">Carrito de Pedidos</div>   <!-- Encabezado de la tarjeta del carrito -->
+        <div class="card-body p-0">  <!-- Cuerpo de la tarjeta del carrito -->
+            <table class="table mb-0">  <!-- Tabla para mostrar los pedidos en el carrito --> 
                 <thead>
-                    <tr>
+                    <tr>    <!-- Encabezados de la tabla -->    
                         <th>Cliente</th>
                         <th>Descripción</th>
                         <th>Total</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="carritoTable"></tbody>
+                <tbody id="carritoTable"></tbody>   <!-- Cuerpo de la tabla donde se agregarán los pedidos del carrito -->
             </table>
         </div>
-        <div class="card-footer text-end">
-            <button class="btn btn-primary" id="enviarCarritoBtn">Enviar pedidos</button>
+        <div class="card-footer text-end">  <!-- Pie de la tarjeta con botón para enviar pedidos -->
+            <button class="btn btn-primary" id="enviarCarritoBtn">Enviar pedidos</button>   <!-- Botón para enviar los pedidos del carrito -->
         </div>
     </div>
-    <table class="table table-bordered">
+    <table class="table table-bordered">    <!-- Tabla para mostrar todos los pedidos -->
         <thead>
-            <tr>
+            <tr>    <!-- Encabezados de la tabla -->
                 <th>Cliente</th>
                 <th>Descripción</th>
                 <th>Total</th>
                 <th>Acciones</th>
             </tr>
         </thead>
-        <tbody id="pedidosTable"></tbody>
+        <tbody id="pedidosTable"></tbody>   <!-- Cuerpo de la tabla donde se agregarán los pedidos -->
     </table>
-    <script src="main.js"></script>
+    <script src="main.js"></script>  <!-- Enlace al archivo JavaScript principal -->
 </body>
 </html>
